@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>GOJO SATORU</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+html{ scroll-behavior:smooth; }
+html, body{
+    width:100%;
+    overflow-x:hidden;
+    background:#020617;
+}
+
+/* ===== Shared Background ===== */
+.bg-glow{
+    background: radial-gradient(circle at top, #4c1d95, #020617 60%);
+}
+
+/* ===== Particles ===== */
+.particles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+    overflow:hidden;
+}
+.particles span{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    animation:float 8s linear infinite;
+    opacity:0.8;
+}
+.particles span:nth-child(1){left:10%;animation-duration:6s;}
+.particles span:nth-child(2){left:20%;animation-duration:8s;}
+.particles span:nth-child(3){left:30%;animation-duration:5s;}
+.particles span:nth-child(4){left:40%;animation-duration:9s;}
+.particles span:nth-child(5){left:50%;animation-duration:7s;}
+.particles span:nth-child(6){left:60%;animation-duration:6s;}
+.particles span:nth-child(7){left:70%;animation-duration:10s;}
+.particles span:nth-child(8){left:80%;animation-duration:8s;}
+.particles span:nth-child(9){left:90%;animation-duration:7s;}
+
+@keyframes float{
+    from{ transform:translateY(100vh) scale(0); opacity:0; }
+    50%{ opacity:1; }
+    to{ transform:translateY(-100vh) scale(1.5); opacity:0; }
+}
+
+/* ===== Navigation ===== */
+nav{
+    width:100%;
+    padding:20px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:200;
+    background:rgba(2,6,23,0.55);
+    backdrop-filter:blur(8px);
+}
+.logo{
+    color:white;
+    font-size:clamp(22px, 5vw, 28px);
+    font-weight:bold;
+    letter-spacing:2px;
+    text-shadow:0 0 20px cyan;
+}
+.menu-toggle{
+    display:none;
+    flex-direction:column;
+    justify-content:space-between;
+    width:28px;
+    height:20px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+    z-index:210;
+}
+.menu-toggle span{
+    display:block;
+    width:100%;
+    height:2px;
+    background:white;
+    border-radius:2px;
+    transition:.3s;
+}
+.menu-toggle.active span:nth-child(1){ transform:translateY(9px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2){ opacity:0; }
+.menu-toggle.active span:nth-child(3){ transform:translateY(-9px) rotate(-45deg); }
+
+nav ul{
+    display:flex;
+    gap:clamp(14px, 3vw, 28px);
+    list-style:none;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+    font-size:16px;
+}
+nav ul li a:hover{
+    color:cyan;
+    text-shadow:0 0 10px cyan;
+}
+
+/* ===== Hero Section ===== */
+.hero{
+    position:relative;
+    width:100%;
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:110px 5% 60px;
+    gap:clamp(20px, 5vw, 40px);
+    flex-wrap:wrap;
+    overflow:hidden;
+}
+.text{
+    color:white;
+    max-width:500px;
+    flex:1 1 320px;
+    text-align:center;
+    position:relative;
+    z-index:10;
+}
+.text h1{
+    font-size: clamp(2.4rem, 9vw, 5.5rem);
+    line-height:1.05;
+    text-transform:uppercase;
+    animation:glowText 2s infinite alternate;
+    word-wrap:break-word;
+}
+@keyframes glowText{
+    from{ text-shadow:0 0 10px #00ffff; }
+    to{ text-shadow: 0 0 20px cyan, 0 0 40px cyan, 0 0 80px cyan; }
+}
+.text p{
+    margin:20px auto 25px;
+    color:#d1d5db;
+    line-height:1.6;
+    font-size: clamp(0.95rem, 3.6vw, 1.25rem);
+    max-width:450px;
+}
+button{
+    padding:14px 35px;
+    border:none;
+    background:linear-gradient(45deg,#7c3aed,#06b6d4);
+    color:white;
+    font-size: clamp(1rem, 3.6vw, 1.25rem);
+    border-radius:50px;
+    cursor:pointer;
+    transition:.4s;
+    display:block;
+    margin:0 auto;
+    -webkit-tap-highlight-color:transparent;
+}
+button:hover, button:active{
+    transform:scale(1.05);
+    box-shadow:0 0 30px cyan;
+}
+
+.character{
+    position:relative;
+    flex:1 1 280px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:280px;
+    z-index:10;
+}
+.character img{
+    width:280px;
+    height:280px;
+    max-width:70vw;
+    max-height:70vw;
+    border-radius:50%;
+    object-fit:cover;
+    z-index:5;
+    position:relative;
+    animation:floatGojo 4s ease-in-out infinite;
+    border:4px solid rgba(0,255,255,0.7);
+    box-shadow:0 0 30px cyan;
+}
+@keyframes floatGojo{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-20px); }
+}
+.aura{
+    position:absolute;
+    width:min(380px, 90vw);
+    height:min(380px, 90vw);
+    background:radial-gradient(circle, rgba(0,255,255,.6), transparent 70%);
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    animation:pulse 3s infinite;
+    filter:blur(30px);
+    z-index:3;
+}
+.ring{
+    position:absolute;
+    border:2px solid rgba(0,255,255,.5);
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+.ring1{ width:min(420px, 95vw); height:min(420px, 95vw); animation:rotate 12s linear infinite; }
+.ring2{ width:min(480px, 100vw); height:min(480px, 100vw); animation:rotateReverse 18s linear infinite; }
+
+@keyframes pulse{
+    0%,100%{ transform:translate(-50%,-50%) scale(1); }
+    50%{ transform:translate(-50%,-50%) scale(1.25); }
+}
+@keyframes rotate{
+    from{ transform:translate(-50%,-50%) rotate(0deg); }
+    to{ transform:translate(-50%,-50%) rotate(360deg); }
+}
+@keyframes rotateReverse{
+    from{ transform:translate(-50%,-50%) rotate(360deg); }
+    to{ transform:translate(-50%,-50%) rotate(0deg); }
+}
+.scroll-hint{
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#9ca3af;
+    font-size:0.85rem;
+    letter-spacing:1px;
+    z-index:10;
+    animation:bounce 2s infinite;
+}
+@keyframes bounce{
+    0%,100%{ transform:translate(-50%,0); }
+    50%{ transform:translate(-50%,8px); }
+}
+
+/* ===== Section Shared ===== */
+section.page-section{
+    width:100%;
+    padding:90px 5%;
+    position:relative;
+}
+.section-title{
+    text-align:center;
+    color:white;
+    font-size:clamp(1.8rem, 5vw, 2.8rem);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-bottom:15px;
+    text-shadow:0 0 15px rgba(0,255,255,0.5);
+}
+.section-sub{
+    text-align:center;
+    color:#9ca3af;
+    max-width:600px;
+    margin:0 auto 50px;
+    font-size:clamp(0.95rem, 3vw, 1.1rem);
+    line-height:1.6;
+}
+
+/* ===== Powers Section ===== */
+#powers{ background:#020617; }
+.power-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:25px;
+    max-width:1200px;
+    margin:0 auto;
+}
+.power-card{
+    background:linear-gradient(160deg, rgba(124,58,237,0.15), rgba(6,182,212,0.08));
+    border:1px solid rgba(0,255,255,0.25);
+    border-radius:16px;
+    padding:30px 25px;
+    text-align:center;
+    transition:.35s;
+}
+.power-card:hover{
+    transform:translateY(-8px);
+    border-color:cyan;
+    box-shadow:0 10px 30px rgba(0,255,255,0.2);
+}
+.power-icon{
+    width:60px;
+    height:60px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(0,255,255,0.5), transparent 70%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.6rem;
+    color:cyan;
+}
+.power-card h3{
+    color:white;
+    font-size:1.2rem;
+    margin-bottom:10px;
+    letter-spacing:1px;
+}
+.power-card p{
+    color:#9ca3af;
+    font-size:0.95rem;
+    line-height:1.6;
+}
+
+/* ===== Domain Section ===== */
+#domain{
+    background: radial-gradient(circle at bottom, #312e81, #020617 70%);
+    text-align:center;
+}
+.domain-box{
+    max-width:800px;
+    margin:0 auto;
+    padding:50px 30px;
+    border:1px solid rgba(124,58,237,0.4);
+    border-radius:20px;
+    background:rgba(76,29,149,0.12);
+    position:relative;
+    overflow:hidden;
+}
+.domain-box::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle, rgba(124,58,237,0.35), transparent 70%);
+    animation:pulse 4s infinite;
+    z-index:0;
+}
+.domain-box *{ position:relative; z-index:1; }
+.domain-box h3{
+    color:cyan;
+    font-size:clamp(1.4rem, 4vw, 2rem);
+    margin-bottom:20px;
+    text-shadow:0 0 20px cyan;
+}
+.domain-box p{
+    color:#d1d5db;
+    line-height:1.8;
+    font-size:clamp(0.95rem, 3vw, 1.1rem);
+}
+
+/* ===== Gallery Section ===== */
+#gallery{ background:#020617; }
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+    max-width:1200px;
+    margin:0 auto;
+}
+.gallery-item{
+    aspect-ratio:1/1;
+    border-radius:14px;
+    background:linear-gradient(135deg, rgba(124,58,237,0.25), rgba(6,182,212,0.15));
+    border:1px solid rgba(0,255,255,0.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#67e8f9;
+    font-size:0.9rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    overflow:hidden;
+    position:relative;
+    transition:.35s;
+}
+.gallery-item:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 25px rgba(0,255,255,0.35);
+}
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ===== Footer ===== */
+footer{
+    text-align:center;
+    padding:40px 5%;
+    color:#6b7280;
+    font-size:0.9rem;
+    border-top:1px solid rgba(255,255,255,0.08);
+    background:#020617;
+}
+footer span{ color:cyan; }
+
+/* ===== Mobile Nav ===== */
+@media (max-width: 768px){
+    .menu-toggle{ display:flex; }
+    nav ul{
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        flex-direction:column;
+        align-items:center;
+        background:rgba(2,6,23,0.97);
+        backdrop-filter:blur(6px);
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .35s ease, padding .35s ease;
+        padding:0 5%;
+        gap:0;
+    }
+    nav ul.open{
+        max-height:300px;
+        padding:20px 5%;
+        gap:18px;
+    }
+    section.page-section{ padding:70px 5%; }
+}
+
+@media (max-width: 480px){
+    .text h1{ font-size:clamp(2.2rem, 11vw, 3.2rem); }
+    .character{ min-height:220px; }
+    .domain-box{ padding:35px 20px; }
+}
+
+@media (min-width: 1400px){
+    .hero{ max-width:1400px; margin:0 auto; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; }
+}
+
+/* ===== Unlimited Void Overlay ===== */
+button#voidBtn{
+    position:relative;
+    overflow:hidden;
+}
+button#voidBtn::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle, rgba(255,255,255,0.6), transparent 60%);
+    opacity:0;
+    transform:scale(0);
+    transition:opacity .4s;
+}
+button#voidBtn.pressed::after{
+    animation:btnBurst .6s ease-out;
+}
+@keyframes btnBurst{
+    0%{ opacity:1; transform:scale(0); }
+    100%{ opacity:0; transform:scale(3); }
+}
+
+.void-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#000;
+    opacity:0;
+    pointer-events:none;
+    overflow:hidden;
+}
+.void-overlay.active{
+    animation:voidFade 3.2s ease forwards;
+    pointer-events:auto;
+}
+@keyframes voidFade{
+    0%{ opacity:0; }
+    8%{ opacity:1; }
+    85%{ opacity:1; }
+    100%{ opacity:0; }
+}
+
+.void-eye-field{
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(56,189,248,0.5), transparent 25%),
+        radial-gradient(circle at 80% 20%, rgba(124,58,237,0.5), transparent 22%),
+        radial-gradient(circle at 50% 70%, rgba(56,189,248,0.4), transparent 30%),
+        radial-gradient(circle at 30% 85%, rgba(124,58,237,0.4), transparent 25%),
+        radial-gradient(circle at 70% 60%, rgba(56,189,248,0.4), transparent 20%);
+    animation:eyeFieldSpin 3.2s linear forwards;
+    filter:blur(2px);
+}
+@keyframes eyeFieldSpin{
+    0%{ transform:scale(0.3) rotate(0deg); opacity:0; }
+    15%{ opacity:1; }
+    100%{ transform:scale(2.4) rotate(220deg); opacity:0.3; }
+}
+
+.void-rings-wrap{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.void-ring{
+    position:absolute;
+    border:1.5px solid rgba(56,189,248,0.55);
+    border-radius:50%;
+    animation:voidRingExpand 3s ease-out forwards;
+}
+.void-ring:nth-child(1){ width:100px; height:100px; animation-delay:0s; }
+.void-ring:nth-child(2){ width:100px; height:100px; animation-delay:.25s; }
+.void-ring:nth-child(3){ width:100px; height:100px; animation-delay:.5s; }
+.void-ring:nth-child(4){ width:100px; height:100px; animation-delay:.75s; }
+@keyframes voidRingExpand{
+    0%{ transform:scale(0.2); opacity:0.9; }
+    100%{ transform:scale(14); opacity:0; }
+}
+
+.void-text{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    color:#e0f2fe;
+    opacity:0;
+    animation:voidTextReveal 3.2s ease forwards;
+}
+.void-text h2{
+    font-size:clamp(1.6rem, 6vw, 3.2rem);
+    letter-spacing:3px;
+    text-transform:uppercase;
+    text-shadow:0 0 20px #38bdf8, 0 0 50px #38bdf8;
+}
+.void-text p{
+    margin-top:14px;
+    font-size:clamp(0.9rem, 3vw, 1.2rem);
+    letter-spacing:2px;
+    color:#94a3b8;
+}
+@keyframes voidTextReveal{
+    0%{ opacity:0; transform:scale(0.8); }
+    20%{ opacity:1; transform:scale(1); }
+    80%{ opacity:1; transform:scale(1); }
+    100%{ opacity:0; transform:scale(1.05); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">GOJO</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <ul id="navList">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#powers">Powers</a></li>
+        <li><a href="#domain">Domain</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section id="home" class="hero bg-glow">
+    <div class="particles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="text">
+        <h1>Gojo<br>Satoru</h1>
+        <p>
+            The strongest Jujutsu Sorcerer.<br>
+            Master of the Six Eyes and the Infinite Void.<br>
+            A legend beyond human imagination.
+        </p>
+        <button id="voidBtn">Unlimited Void</button>
+    </div>
+
+    <div class="character">
+        <div class="aura"></div>
+        <div class="ring ring1"></div>
+        <div class="ring ring2"></div>
+        <img src="gojo.jpg" alt="Gojo Satoru">
+    </div>
+
+    <div class="scroll-hint">▼ scroll to explore ▼</div>
+</section>
+
+<!-- Powers -->
+<section id="powers" class="page-section">
+    <h2 class="section-title">Cursed Techniques</h2>
+    <p class="section-sub">Innate abilities that make Gojo the strongest sorcerer to ever exist.</p>
+    <div class="power-grid">
+        <div class="power-card">
+            <div class="power-icon">◎</div>
+            <h3>Limitless</h3>
+            <p>An inherited technique manipulating infinity itself, making Gojo nearly untouchable in combat.</p>
+        </div>
+        <div class="power-card">
+            <div class="power-icon">👁</div>
+            <h3>Six Eyes</h3>
+            <p>Grants extraordinary perception of cursed energy, allowing precise and efficient technique usage.</p>
+        </div>
+        <div class="power-card">
+            <div class="power-icon">∞</div>
+            <h3>Infinity</h3>
+            <p>A constant application of Limitless that prevents anything from ever truly reaching him.</p>
+        </div>
+        <div class="power-card">
+            <div class="power-icon">⬡</div>
+            <h3>Hollow Purple</h3>
+            <p>A fusion of cursed energy extremes, unleashed as a devastating imaginary-mass attack.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Domain -->
+<section id="domain" class="page-section">
+    <h2 class="section-title">Domain Expansion</h2>
+    <p class="section-sub">A sorcerer's ultimate technique — a pocket dimension where reality bends to their will.</p>
+    <div class="domain-box">
+        <h3>Unlimited Void</h3>
+        <p>
+            Trapping opponents within an inescapable domain, Unlimited Void floods the senses with
+            infinite information, overwhelming anyone caught inside. It is regarded as the strongest
+            domain expansion, sealing victory before a single blow is struck.
+        </p>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="page-section">
+    <h2 class="section-title">Gallery</h2>
+    <p class="section-sub">A collection of moments. Add your own images by editing the gallery grid below.</p>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="03b741d35b9cc1c4707c67d1f7f42d03.jpg" alt="Gallery image 1" onerror="this.parentElement.textContent='Add Image 1'"></div>
+        <div class="gallery-item"><img src="028487184992981_655c3bed9c87b.webp" alt="Gallery image 2" onerror="this.parentElement.textContent='Add Image 2'"></div>
+        <div class="gallery-item"><img src="a740e903c4b8271e61e790aa0a143b1a.jpg" alt="Gallery image 3" onerror="this.parentElement.textContent='Add Image 3'"></div>
+        <div class="gallery-item"><img src="il_1080xN_5368043203_p2z5.webp" alt="Gallery image 4" onerror="this.parentElement.textContent='Add Image 4'"></div>
+        <div class="gallery-item"><img src="images (1).jpg" alt="Gallery image 5" onerror="this.parentElement.textContent='Add Image 5'"></div>
+        <div class="gallery-item"><img src="images.jpg" alt="Gallery image 6" onerror="this.parentElement.textContent='Add Image 6'"></div>
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 Gojo Fan Page. Built with <span>♦</span> for Jujutsu Kaisen fans.
+</footer>
+
+<div class="void-overlay" id="voidOverlay">
+    <div class="void-eye-field"></div>
+    <div class="void-rings-wrap">
+        <div class="void-ring"></div>
+        <div class="void-ring"></div>
+        <div class="void-ring"></div>
+        <div class="void-ring"></div>
+    </div>
+    <div class="void-text">
+        <h2>Domain Expansion</h2>
+        <p>Unlimited Void</p>
+    </div>
+</div>
+
+<script>
+    const toggle = document.getElementById('menuToggle');
+    const navList = document.getElementById('navList');
+
+    toggle.addEventListener('click', () => {
+        const isOpen = navList.classList.toggle('open');
+        toggle.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navList.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('open');
+            toggle.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // Unlimited Void interactive effect
+    const voidBtn = document.getElementById('voidBtn');
+    const voidOverlay = document.getElementById('voidOverlay');
+    let voidPlaying = false;
+
+    voidBtn.addEventListener('click', () => {
+        if (voidPlaying) return;
+        voidPlaying = true;
+
+        voidBtn.classList.add('pressed');
+        voidOverlay.classList.add('active');
+
+        setTimeout(() => voidBtn.classList.remove('pressed'), 650);
+
+        setTimeout(() => {
+            voidOverlay.classList.remove('active');
+            voidPlaying = false;
+        }, 3200);
+    });
+</script>
+</body>
+</html>
